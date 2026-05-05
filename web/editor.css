@@ -1,0 +1,634 @@
+/* ============================================================
+   MarkFlow-Pro Web Editor Styles
+   Modern, clean design with split-pane layout
+   ============================================================ */
+
+/* Reset and Base */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --toolbar-bg: #1e293b;
+  --toolbar-text: #f1f5f9;
+  --toolbar-border: #334155;
+  --toolbar-btn-bg: #334155;
+  --toolbar-btn-hover: #475569;
+  --toolbar-btn-primary: #2563eb;
+  --toolbar-btn-primary-hover: #1d4ed8;
+
+  --editor-bg: #1e1e1e;
+  --editor-text: #d4d4d4;
+  --editor-gutter: #2d2d2d;
+  --editor-line-number: #858585;
+
+  --preview-bg: #ffffff;
+  --preview-text: #1a1a1a;
+  --preview-text-secondary: #6b7280;
+  --preview-link: #2563eb;
+  --preview-border: #e0e0e0;
+  --preview-code-bg: #f6f8fa;
+  --preview-table-header: #f6f8fa;
+  --preview-heading: #111827;
+
+  --pane-header-bg: #f8fafc;
+  --pane-header-text: #475569;
+  --pane-border: #e2e8f0;
+
+  --divider-color: #cbd5e1;
+  --divider-hover: #2563eb;
+
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-code: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Courier New', monospace;
+  --font-mono: 'Fira Code', 'Cascadia Code', Consolas, monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--preview-text);
+  background-color: var(--preview-bg);
+}
+
+/* ============================================================
+   Toolbar
+   ============================================================ */
+
+#toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 16px;
+  background-color: var(--toolbar-bg);
+  color: var(--toolbar-text);
+  border-bottom: 1px solid var(--toolbar-border);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toolbar-logo {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background-color: var(--toolbar-border);
+}
+
+.toolbar-filename {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.toolbar-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toolbar-center label {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.toolbar-center select {
+  padding: 4px 8px;
+  border: 1px solid var(--toolbar-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--toolbar-btn-bg);
+  color: var(--toolbar-text);
+  font-size: 12px;
+  cursor: pointer;
+  outline: none;
+}
+
+.toolbar-center select:hover {
+  border-color: var(--toolbar-btn-hover);
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toolbar-btn {
+  padding: 6px 14px;
+  border: 1px solid var(--toolbar-border);
+  border-radius: var(--radius-md);
+  background-color: var(--toolbar-btn-bg);
+  color: var(--toolbar-text);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.toolbar-btn:hover {
+  background-color: var(--toolbar-btn-hover);
+  border-color: var(--toolbar-btn-hover);
+}
+
+.toolbar-btn-primary {
+  background-color: var(--toolbar-btn-primary);
+  border-color: var(--toolbar-btn-primary);
+}
+
+.toolbar-btn-primary:hover {
+  background-color: var(--toolbar-btn-primary-hover);
+  border-color: var(--toolbar-btn-primary-hover);
+}
+
+/* ============================================================
+   Main Content Layout
+   ============================================================ */
+
+#main-content {
+  display: flex;
+  height: calc(100vh - 48px);
+  overflow: hidden;
+}
+
+/* ============================================================
+   Editor Pane
+   ============================================================ */
+
+#editor-pane {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  min-width: 200px;
+  max-width: 80%;
+  background-color: var(--editor-bg);
+}
+
+.pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  padding: 0 12px;
+  background-color: var(--pane-header-bg);
+  border-bottom: 1px solid var(--pane-border);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--pane-header-text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.pane-status {
+  font-weight: 400;
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+#editor {
+  flex: 1;
+  resize: none;
+  border: none;
+  outline: none;
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--editor-text);
+  background-color: var(--editor-bg);
+  tab-size: 2;
+  white-space: pre;
+  overflow: auto;
+}
+
+#editor::placeholder {
+  color: #555;
+}
+
+#editor::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+#editor::-webkit-scrollbar-track {
+  background: var(--editor-gutter);
+}
+
+#editor::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 5px;
+}
+
+#editor::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+/* ============================================================
+   Resizable Divider
+   ============================================================ */
+
+#divider {
+  width: 4px;
+  cursor: col-resize;
+  background-color: var(--divider-color);
+  transition: background-color 0.15s;
+  flex-shrink: 0;
+}
+
+#divider:hover,
+#divider.active {
+  background-color: var(--divider-hover);
+}
+
+/* ============================================================
+   Preview Pane
+   ============================================================ */
+
+#preview-pane {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 200px;
+  background-color: var(--preview-bg);
+}
+
+#preview {
+  flex: 1;
+  padding: 24px 32px;
+  overflow-y: auto;
+  line-height: 1.7;
+}
+
+#preview::-webkit-scrollbar {
+  width: 8px;
+}
+
+#preview::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#preview::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+#preview::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+.preview-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--preview-text-secondary);
+  font-size: 15px;
+}
+
+/* ============================================================
+   Preview Content Styles
+   ============================================================ */
+
+#preview h1 {
+  font-size: 2em;
+  font-weight: 700;
+  color: var(--preview-heading);
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+  line-height: 1.3;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--preview-border);
+}
+
+#preview h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: var(--preview-heading);
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+  line-height: 1.35;
+}
+
+#preview h3 {
+  font-size: 1.25em;
+  font-weight: 600;
+  color: var(--preview-heading);
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+#preview h4, #preview h5, #preview h6 {
+  font-weight: 600;
+  color: var(--preview-heading);
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+#preview p {
+  margin-bottom: 1em;
+}
+
+#preview strong {
+  font-weight: 700;
+}
+
+#preview em {
+  font-style: italic;
+}
+
+#preview del {
+  text-decoration: line-through;
+  color: var(--preview-text-secondary);
+}
+
+#preview a {
+  color: var(--preview-link);
+  text-decoration: none;
+}
+
+#preview a:hover {
+  text-decoration: underline;
+}
+
+#preview code {
+  font-family: var(--font-code);
+  font-size: 0.875em;
+  background-color: var(--preview-code-bg);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+}
+
+#preview pre {
+  background-color: var(--preview-code-bg);
+  border-radius: var(--radius-md);
+  padding: 1em;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+#preview pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.85em;
+  line-height: 1.6;
+}
+
+#preview blockquote {
+  border-left: 4px solid var(--preview-border);
+  padding-left: 1em;
+  margin: 1em 0;
+  color: var(--preview-text-secondary);
+}
+
+#preview ul, #preview ol {
+  padding-left: 2em;
+  margin-bottom: 1em;
+}
+
+#preview li {
+  margin-bottom: 0.25em;
+}
+
+#preview table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+
+#preview th, #preview td {
+  border: 1px solid var(--preview-border);
+  padding: 0.5em 1em;
+  text-align: left;
+}
+
+#preview th {
+  background-color: var(--preview-table-header);
+  font-weight: 600;
+}
+
+#preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  margin: 1em 0;
+}
+
+#preview hr {
+  border: none;
+  border-top: 1px solid var(--preview-border);
+  margin: 2em 0;
+}
+
+#preview .mf-page {
+  margin: 1em 0;
+  padding: 1.5em;
+  border: 1px solid var(--preview-border);
+  border-radius: var(--radius-lg);
+}
+
+#preview .mf-page-title h1 {
+  border-bottom: none;
+  margin-top: 0;
+}
+
+#preview .mf-callout {
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: var(--radius-md);
+}
+
+#preview .mf-box {
+  margin: 0.5em 0;
+  padding: 1em;
+  border: 1px solid var(--preview-border);
+  border-radius: var(--radius-lg);
+}
+
+#preview .mf-toc {
+  background-color: #f9fafb;
+  border: 1px solid var(--preview-border);
+  border-radius: var(--radius-lg);
+  padding: 1em 1.5em;
+  margin: 1em 0;
+}
+
+#preview .mf-toc h3 {
+  margin-top: 0;
+}
+
+#preview .mf-toc ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#preview .mf-math {
+  text-align: center;
+  margin: 1em 0;
+  font-family: 'Latin Modern Math', 'STIX Two Math', serif;
+  font-size: 1.1em;
+}
+
+#preview .mf-progress {
+  width: 100%;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  overflow: hidden;
+  height: 8px;
+  margin: 0.5em 0;
+}
+
+#preview .mf-progress-bar {
+  height: 100%;
+  background-color: #2563eb;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+#preview .mf-badge {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  border-radius: 9999px;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: white;
+}
+
+#preview .mf-tab-btn {
+  padding: 0.5em 1em;
+  border: 1px solid var(--preview-border);
+  background: #f9fafb;
+  cursor: pointer;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  font-size: 0.9em;
+}
+
+#preview .mf-tab-btn.active {
+  background: white;
+  border-bottom: 2px solid var(--preview-link);
+  font-weight: 600;
+}
+
+#preview .mf-tab-panel {
+  padding: 1em;
+  border: 1px solid var(--preview-border);
+  border-top: none;
+}
+
+/* ============================================================
+   Dark Theme Override for Preview
+   ============================================================ */
+
+body.dark-preview #preview-pane {
+  background-color: #1a1a2e;
+}
+
+body.dark-preview #preview {
+  color: #e5e7eb;
+}
+
+body.dark-preview #preview h1,
+body.dark-preview #preview h2,
+body.dark-preview #preview h3 {
+  color: #f9fafb;
+}
+
+body.dark-preview #preview a {
+  color: #60a5fa;
+}
+
+body.dark-preview #preview code {
+  background-color: #2d2d44;
+}
+
+body.dark-preview #preview pre {
+  background-color: #2d2d44;
+}
+
+body.dark-preview #preview blockquote {
+  border-left-color: #374151;
+  color: #9ca3af;
+}
+
+body.dark-preview #preview th,
+body.dark-preview #preview td {
+  border-color: #374151;
+}
+
+body.dark-preview #preview th {
+  background-color: #1f2937;
+}
+
+body.dark-preview #preview hr {
+  border-top-color: #374151;
+}
+
+body.dark-preview #preview .mf-toc {
+  background-color: #1f2937;
+  border-color: #374151;
+}
+
+body.dark-preview #preview .mf-box {
+  border-color: #374151;
+}
+
+/* ============================================================
+   Responsive Layout
+   ============================================================ */
+
+@media (max-width: 768px) {
+  #toolbar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .toolbar-center {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+
+  #main-content {
+    flex-direction: column;
+    height: calc(100vh - 80px);
+  }
+
+  #editor-pane {
+    width: 100%;
+    height: 50%;
+    max-width: 100%;
+  }
+
+  #divider {
+    width: 100%;
+    height: 4px;
+    cursor: row-resize;
+  }
+
+  #preview-pane {
+    width: 100%;
+    min-width: 0;
+  }
+}

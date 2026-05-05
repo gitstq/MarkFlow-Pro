@@ -1,0 +1,13 @@
+# Mathematical Document
+
+.page {Formulas} {
+  ## Quadratic Formula
+  $$x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$$
+
+  ## Euler's Identity
+  $$e^{i\pi} + 1 = 0$$
+
+  ## Inline Examples
+  The area of a circle is $A = \pi r^2$.
+  Pythagorean theorem: $a^2 + b^2 = c^2$.
+}

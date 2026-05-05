@@ -1,0 +1,44 @@
+# Welcome to MarkFlow-Pro
+
+.page {My Document} {
+  This is a **function-based** markdown typesetting engine.
+
+  .callout {info} {Did you know?} {
+    MarkFlow-Pro extends standard Markdown with powerful function calls.
+  }
+}
+
+## Features
+
+.columns {2} {
+  ### Multi-Format Output
+  Render your documents as HTML, PDF, or presentation slides.
+
+  ### Live Preview
+  Edit and preview in real-time with our web editor.
+}
+
+.grid {3} {
+  .box {Feature 1}
+  .box {Feature 2}
+  .box {Feature 3}
+}
+
+## Code Example
+
+```javascript
+const result = markflow.parse(source);
+const html = markflow.renderHTML(result);
+console.log(html);
+```
+
+## Math Support
+
+Inline math: $E = mc^2$
+
+Block math:
+$$
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+$$
+
+.toc

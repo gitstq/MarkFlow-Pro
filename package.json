@@ -1,0 +1,55 @@
+{
+  "name": "markflow-pro",
+  "version": "1.0.0",
+  "description": "Lightweight Markdown Function-Based Typesetting Engine - Extended Markdown with function calls, multi-target rendering (HTML/PDF/Slides), live preview, and theme system",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "markflow": "dist/cli/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "jest --coverage",
+    "lint": "eslint src/**/*.ts",
+    "start": "node dist/cli/cli.js watch --port 3000"
+  },
+  "keywords": [
+    "markdown",
+    "typesetting",
+    "pdf",
+    "slides",
+    "html",
+    "renderer",
+    "function",
+    "extended-markdown",
+    "live-preview",
+    "theme",
+    "presentation",
+    "document-engine"
+  ],
+  "license": "MIT",
+  "author": "MarkFlow-Pro Contributors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/markflow-pro/markflow-pro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/markflow-pro/markflow-pro/issues"
+  },
+  "homepage": "https://github.com/markflow-pro/markflow-pro#readme",
+  "dependencies": {
+    "marked": "^12.0.0",
+    "highlight.js": "^11.9.0",
+    "commander": "^12.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.0",
+    "@types/node": "^20.11.0",
+    "@types/marked": "^6.0.0",
+    "@types/jest": "^29.5.0",
+    "eslint": "^8.57.0"
+  }
+}

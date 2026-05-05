@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MarkFlow-Pro Web Editor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <link rel="stylesheet" href="editor.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header Toolbar -->
+    <header id="toolbar">
+      <div class="toolbar-left">
+        <h1 class="toolbar-logo">MarkFlow-Pro</h1>
+        <span class="toolbar-divider"></span>
+        <span class="toolbar-filename" id="filename">untitled.mf</span>
+      </div>
+      <div class="toolbar-center">
+        <label for="theme-select">Theme:</label>
+        <select id="theme-select">
+          <option value="default">Default</option>
+          <option value="dark">Dark</option>
+          <option value="ocean">Ocean</option>
+          <option value="forest">Forest</option>
+          <option value="sunset">Sunset</option>
+        </select>
+        <label for="format-select">Format:</label>
+        <select id="format-select">
+          <option value="html">HTML</option>
+          <option value="slides">Slides</option>
+        </select>
+      </div>
+      <div class="toolbar-right">
+        <button id="btn-import" class="toolbar-btn" title="Import .mf file">Import</button>
+        <button id="btn-export" class="toolbar-btn toolbar-btn-primary" title="Export document">Export</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+      <!-- Editor Pane -->
+      <div id="editor-pane">
+        <div class="pane-header">
+          <span>Editor</span>
+          <span class="pane-status" id="editor-status">Ready</span>
+        </div>
+        <textarea id="editor" spellcheck="false" placeholder="Type your MarkFlow-Pro document here..."></textarea>
+      </div>
+
+      <!-- Resizable Divider -->
+      <div id="divider"></div>
+
+      <!-- Preview Pane -->
+      <div id="preview-pane">
+        <div class="pane-header">
+          <span>Preview</span>
+          <span class="pane-status" id="preview-status">Ready</span>
+        </div>
+        <div id="preview">
+          <div class="preview-placeholder">
+            <p>Start typing in the editor to see a live preview.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Hidden file input for import -->
+    <input type="file" id="file-input" accept=".mf,.md,.txt,.markdown" style="display: none;">
+  </div>
+
+  <!-- External Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
+  <script src="editor.js"></script>
+</body>
+</html>
